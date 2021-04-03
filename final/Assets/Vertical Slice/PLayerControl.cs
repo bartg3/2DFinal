@@ -20,6 +20,8 @@ public class PLayerControl : MonoBehaviour
    private int extraJumps;
    public int extraJumpsValue;
 
+   public GameObject bullet;
+
    void Start()
    {
        extraJumps = extraJumpsValue;
@@ -58,6 +60,12 @@ public class PLayerControl : MonoBehaviour
        else if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGrounded == true)
        {
           rb.velocity = Vector2.up * jumpForce; 
+       }
+       if(Input.GetKeyDown(KeyCode.Space))
+       {
+           GameObject b = (GameObject)(Instantiate(bullet, transform.position + transform.up*.1f, Quaternion.identity));
+
+           b.GetComponent<Rigidbody2D>().AddForce(transform.right * 1000);
        }
    }
 
